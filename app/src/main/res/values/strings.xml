@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ConUHacks</string>
+    <string-array name="Radius">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>10+ km</item>
+    </string-array>
 </resources>
