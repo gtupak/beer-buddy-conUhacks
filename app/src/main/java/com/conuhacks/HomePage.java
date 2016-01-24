@@ -49,7 +49,8 @@ public class HomePage extends Activity implements AdapterView.OnItemSelectedList
     }
 
     public void FindBeer (){
-        Intent intent = new Intent(HomePage.this, BeerList.class);
+        //Intent intent = new Intent(HomePage.this, BeerList.class);
+        Intent intent = new Intent(HomePage.this, SearchBeerList.class);
         startActivity(intent);
     }
 }
