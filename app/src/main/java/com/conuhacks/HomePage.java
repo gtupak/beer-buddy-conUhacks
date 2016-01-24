@@ -1,18 +1,21 @@
 package com.conuhacks;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomePage extends Activity implements AdapterView.OnItemSelectedListener {
     Spinner spinner;
+    Button btn_beer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,14 @@ public class HomePage extends Activity implements AdapterView.OnItemSelectedList
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.Radius, android.R.layout.simple_spinner_item );
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        btn_beer = (Button) findViewById(R.id.beer_btn);
+
+        btn_beer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FindBeer();
+            }
+        });
     }
 
     @Override
@@ -35,5 +46,10 @@ public class HomePage extends Activity implements AdapterView.OnItemSelectedList
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void FindBeer (){
+        Intent intent = new Intent(HomePage.this, BeerList.class);
+        startActivity(intent);
     }
 }

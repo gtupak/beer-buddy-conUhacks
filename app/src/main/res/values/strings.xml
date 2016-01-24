@@ -5,4 +5,29 @@
         <item>10 km</item>
         <item>10+ km</item>
     </string-array>
+    <string-array name="Brand">
+        <item>Corona</item>
+        <item>Heineken</item>
+        <item>Coors Light</item>
+    </string-array>
+    <string-array name="Price">
+        <item>5$</item>
+        <item>7$</item>
+        <item>10$</item>
+    </string-array>
+    <string-array name="Location">
+        <item>SAQ</item>
+        <item>LCBO</item>
+        <item>Beer Store</item>
+    </string-array>
+    <string-array name="Address">
+        <item>Address 1</item>
+        <item>Address 2</item>
+        <item>Address 3</item>
+    </string-array>
+    <string-array name="Distance">
+        <item>100m</item>
+        <item>550m</item>
+        <item>200m</item>
+    </string-array>
 </resources>
