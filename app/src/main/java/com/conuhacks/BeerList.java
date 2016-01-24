@@ -56,13 +56,13 @@ public class BeerList extends Activity {
         Firebase.setAndroidContext(this);
         Firebase mFireBase = new Firebase("https://beerscraper.firebaseio.com/");
 
-
-
+        // This is where the voodoo happens
         mFireBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<String> items = (ArrayList<String>) dataSnapshot.getValue();
                 table = (TableLayout)findViewById(R.id.tableLayout);
+                table.removeAllViews();
+                ArrayList<String> items = (ArrayList<String>) dataSnapshot.getValue();
                 for(Object item : items){
                     HashMap<String,Object> itemMap = (HashMap<String,Object>)item;
                     String name = (String)itemMap.get("name");
