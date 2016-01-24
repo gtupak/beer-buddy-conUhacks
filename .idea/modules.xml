@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ConUHacks.iml" filepath="$PROJECT_DIR$/ConUHacks.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/beer-buddy-conUhacks.iml" filepath="$PROJECT_DIR$/beer-buddy-conUhacks.iml" />
     </modules>

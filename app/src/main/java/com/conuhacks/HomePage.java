@@ -12,6 +12,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
+
 public class HomePage extends Activity implements AdapterView.OnItemSelectedListener {
     Spinner spinner;
     Button btn_beer;
@@ -21,6 +28,22 @@ public class HomePage extends Activity implements AdapterView.OnItemSelectedList
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home_page);
+
+//        // FireBase
+//        Firebase.setAndroidContext(this);
+//        Firebase mFireBase = new Firebase("https://beerscraper.firebaseio.com/");
+//
+//        mFireBase.child("beerscraper").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(FirebaseError firebaseError) {
+//
+//            }
+//        });
 
         spinner = (Spinner) findViewById(R.id.spinner);
 

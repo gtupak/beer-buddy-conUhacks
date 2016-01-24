@@ -11,8 +11,19 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.zip.Inflater;
 
 public class BeerList extends Activity {
@@ -21,7 +32,7 @@ public class BeerList extends Activity {
     String[] locations;
     String[] addresses;
     String[] distances;
-    ListView list;
+    TableLayout table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +40,46 @@ public class BeerList extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_beer_list);
 
-        Resources res = getResources();
-        prices = res.getStringArray(R.array.Price);
-        brands = res.getStringArray(R.array.Brand);
-        locations = res.getStringArray(R.array.Location);
-        addresses = res.getStringArray(R.array.Address);
-        distances = res.getStringArray(R.array.Distance);
+//        Resources res = getResources();
+//        prices = res.getStringArray(R.array.Price);
+//        brands = res.getStringArray(R.array.Brand);
+//        locations = res.getStringArray(R.array.Location);
+//        addresses = res.getStringArray(R.array.Address);
+//        distances = res.getStringArray(R.array.Distance);
 
-        list = (ListView) findViewById(R.id.listView);
-        CustomAdapter adapter = new CustomAdapter(this, prices, brands, locations, addresses, distances);
-        list.setAdapter(adapter);
+//        list = (ListView) findViewById(R.id);
+//        CustomAdapter adapter = new CustomAdapter(this, prices, brands, locations, addresses, distances);
+//        list.setAdapter(adapter);
+
+
+        // FireBase
+        Firebase.setAndroidContext(this);
+        Firebase mFireBase = new Firebase("https://beerscraper.firebaseio.com/");
+
+
+
+        mFireBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<String> items = (ArrayList<String>) dataSnapshot.getValue();
+                table = (TableLayout)findViewById(R.id.tableLayout);
+                for(Object item : items){
+                    HashMap<String,Object> itemMap = (HashMap<String,Object>)item;
+                    String name = (String)itemMap.get("name");
+                    String price = (String)itemMap.get("price");
+                    TextView txtView = new TextView(table.getContext());
+                    txtView.setText(name + " at " + price);
+                    TableRow row = new TableRow(table.getContext());
+                    row.addView(txtView);
+                    table.addView(row);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
     }
 
